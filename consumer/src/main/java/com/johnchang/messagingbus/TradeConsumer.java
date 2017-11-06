@@ -17,6 +17,11 @@ public class TradeConsumer {
     private static final Log log = LogFactory.getLog(TradeConsumer.class);
 
     @Bean
+    ConnectionFactory rabbitMQConnectionFactory() {
+        return new RMQConnectionFactory();
+    }
+
+    @Bean
     public DefaultMessageListenerContainer btcJmsListener(ConnectionFactory connectionFactory) {
 
         DefaultMessageListenerContainer btcJmsListener = new DefaultMessageListenerContainer();
@@ -29,11 +34,6 @@ public class TradeConsumer {
 
         btcJmsListener.setMessageListener(btcAdapter);
         return btcJmsListener;
-    }
-
-    @Bean
-    ConnectionFactory rabbitMQConnectionFactory() {
-        return new RMQConnectionFactory();
     }
 
     @Bean

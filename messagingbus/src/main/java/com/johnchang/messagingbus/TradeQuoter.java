@@ -37,7 +37,6 @@ public class TradeQuoter {
     private SerializationProxy serializeEth = new SerializationProxy(eth);
     private Random rand = new Random();
 
-
     private TradeMapFactory tradeMapFactory = new TradeMapFactory(serializeBtc, serializeNeo,
             serializeEth, rand);
 
@@ -70,33 +69,31 @@ public class TradeQuoter {
         };
     }
 
-//    [TradeMapFactory] <- [TraderWriter]
-//
-//    class TraderWriter {
-//        TradeMapFactory tradeMapFactory;
-//
-//        public void write("filename.txt", trade) {
-//            FileOutputStream fileOutputStream = new FileOutputStream(file);
-//            BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream);
-//            ObjectOutputStream objectOutputStream = new ObjectOutputStream(bufferedOutputStream);
-//            objectOutputStream.writeObject(trade);
-//            objectOutputStream.close();
-//        }
-//    }
+    class TraderWriter {
+        TradeMapFactory tradeMapFactory;
 
-//    private static void serialization(String file, Map<SerializationProxy, Double> trade) throws IOException {
-//        FileOutputStream fileOutputStream = new FileOutputStream(file);
-//        BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream);
-//        ObjectOutputStream objectOutputStream = new ObjectOutputStream(bufferedOutputStream);
-//        objectOutputStream.writeObject(trade);
-//        objectOutputStream.close();
-//    }
-//
-//    private void serializeTrade() {
-//        try {
-//            TradeQuoter.serialization("trade.txt", lastTrade);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+        public void write("filename.txt", trade) {
+            FileOutputStream fileOutputStream = new FileOutputStream(file);
+            BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(bufferedOutputStream);
+            objectOutputStream.writeObject(trade);
+            objectOutputStream.close();
+        }
+    }
+
+    private static void serialization(String file, Map<SerializationProxy, Double> trade) throws IOException {
+        FileOutputStream fileOutputStream = new FileOutputStream(file);
+        BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream);
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(bufferedOutputStream);
+        objectOutputStream.writeObject(trade);
+        objectOutputStream.close();
+    }
+
+    private void serializeTrade() {
+        try {
+            TradeQuoter.serialization("trade.txt", lastTrade);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
