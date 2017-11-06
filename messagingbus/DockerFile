@@ -1,0 +1,4 @@
+FROM openjdk:8
+ADD target/messagingbus-0.1.0.jar messagingbus-0.1.0.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "messagingbus-0.1.0.jar"]
